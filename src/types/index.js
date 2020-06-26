@@ -1,0 +1,1 @@
+export const AGREGAR_PERSONA = 'AGREGAR_PERSONA';
