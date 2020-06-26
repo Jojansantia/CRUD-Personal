@@ -5,11 +5,19 @@ import {
     AGREGAR_PERSONA_EXITO,
     DESCARGA_PERSONAL_EXITO,
     OBTENER_PERSONA_EDITAR,
-    PERSONA_EDITADA_EXITO
+    PERSONA_EDITADA_EXITO,
+    OBTENER_PERSONA_ELIMINAR,
+    PERSONA_ELIMINADA_EXITO,
+    AGREGAR_PERSONA_ERROR,
+    DESCARGA_PERSONAL_ERROR,
+    PERSONA_ELIMINADA_ERROR,
+    PERSONA_EDITADA_ERROR
+    
     
 } from '../types';
 import clienteAxios from '../config/axios';
 import Swal from 'sweetalert2';
+
 
 export function crearNuevaPersonaAction(persona) {
     return async (dispatch) => {
@@ -25,14 +33,14 @@ export function crearNuevaPersonaAction(persona) {
             // Alerta
             Swal.fire(
                 'Correcto', 
-                'El producto se agregó correctamente',
+                'La persona se agregó correctamente',
                 'success'
             );
 
         } catch (error) {
             console.log(error);
             // si hay un error cambiar el state
-            //dispatch( agregarProductoError(true) );
+            dispatch( agregarPersonaError(true) );
 
             // alerta de error
             Swal.fire({
@@ -54,6 +62,11 @@ const agregarPersonaExito = persona => ({
     payload: persona
 })
 
+const agregarPersonaError = estado => ({
+    type: AGREGAR_PERSONA_ERROR,
+    payload: estado
+});
+
 export function editarPersonaAction(persona) {
     return async (dispatch) => {
         dispatch( editarPersona() );
@@ -63,7 +76,7 @@ export function editarPersonaAction(persona) {
             dispatch( editarPersonaExito(persona) );
         } catch (error) {
             console.log(error);
-           // dispatch( editarProductoError() );
+            dispatch( editarPersonaError() );
         }
     }
 }
@@ -75,6 +88,11 @@ const editarPersonaExito = persona => ({
     type: PERSONA_EDITADA_EXITO,
     payload: persona
 });
+
+const editarPersonaError = () => ({
+    type: PERSONA_EDITADA_ERROR,
+    payload: true
+})
 
 export function obtenerPersonaEditar(persona) {
     return (dispatch) => {
@@ -97,7 +115,7 @@ export function obtenerPersonalAction() {
             dispatch( descargaPersonalExitosa(respuesta.data) )
         } catch (error) {
             console.log(error);
-           // dispatch( descargaProductosError() )
+            dispatch( descargaPersonalError() )
         }
     }
 }
@@ -111,3 +129,41 @@ const descargaPersonalExitosa = productos => ({
     type: DESCARGA_PERSONAL_EXITO,
     payload: productos
 })
+
+const descargaPersonalError = () => ({
+    type: DESCARGA_PERSONAL_ERROR, 
+    payload: true
+});
+
+export function borrarPersonaAction(id) {
+    return async (dispatch) => {
+        dispatch(obtenerPersonaEliminar(id) );
+
+        try {
+            await clienteAxios.delete(`/personal/${id}`);
+            dispatch( eliminarPersonaExito() );
+
+            // Si se elimina, mostrar alerta
+            Swal.fire(
+                'Eliminada',
+                'La persona se eliminó correctamente.',
+                'success'
+            )
+        } catch (error) {
+            console.log(error);
+            dispatch( eliminarPersonaError() );
+        }
+    }
+}
+
+const obtenerPersonaEliminar = id => ({
+    type: OBTENER_PERSONA_ELIMINAR,
+    payload: id
+});
+const eliminarPersonaExito = () => ({
+    type: PERSONA_ELIMINADA_EXITO
+})
+const eliminarPersonaError = () => ({
+    type: PERSONA_ELIMINADA_ERROR,
+    payload: true
+});

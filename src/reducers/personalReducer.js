@@ -4,9 +4,17 @@ import {
     AGREGAR_PERSONA_EXITO,
     DESCARGA_PERSONAL_EXITO,
     OBTENER_PERSONA_EDITAR,
-    PERSONA_EDITADA_EXITO
+    PERSONA_EDITADA_EXITO,
+    OBTENER_PERSONA_ELIMINAR,
+    PERSONA_ELIMINADA_EXITO,
+    AGREGAR_PERSONA_ERROR,
+    DESCARGA_PERSONAL_ERROR,
+    PERSONA_ELIMINADA_ERROR,
+    PERSONA_EDITADA_ERROR
     
 } from '../types';
+
+ 
 
 const initialState = {
     personal: [],
@@ -49,6 +57,26 @@ export default function(state = initialState, action) {
                 personal: state.personal.map( persona => 
                     persona.id === action.payload.id ? persona = action.payload : persona
                 )
+            }
+            case OBTENER_PERSONA_ELIMINAR:
+            return {
+                ...state,
+                personaeliminar: action.payload
+            }
+        case PERSONA_ELIMINADA_EXITO:
+            return {
+                ...state,
+                personal: state.personal.filter( persona => persona.id !== state.personaeliminar ),
+                personaeliminar: null
+            }
+            case AGREGAR_PERSONA_ERROR:
+        case DESCARGA_PERSONAL_ERROR:
+        case PERSONA_ELIMINADA_ERROR:
+        case PERSONA_EDITADA_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
             default:
             return state;
