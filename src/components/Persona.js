@@ -47,14 +47,14 @@ const Persona = ({persona}) => {
                 <button 
                     type="submit"
                     onClick={ () => redireccionarEdicion(persona) }
-                    className="my-5 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                    className="m-2 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
                     >
                     Editar
                 </button>
 
                 <button 
                     type="submit"
-                    className="my-5 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                    className="m-2 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
                     onClick={() => confirmarEliminarProducto(id)}
                 >Eliminar </button>
                 

@@ -1,20 +1,17 @@
 import {
     AGREGAR_PERSONA,
-    COMENZAR_DESCARGA_PERSONAL,
     AGREGAR_PERSONA_EXITO,
+    AGREGAR_PERSONA_ERROR,
+    COMENZAR_DESCARGA_PERSONAL,
     DESCARGA_PERSONAL_EXITO,
+    DESCARGA_PERSONAL_ERROR,
     OBTENER_PERSONA_EDITAR,
     PERSONA_EDITADA_EXITO,
+    PERSONA_EDITADA_ERROR,
     OBTENER_PERSONA_ELIMINAR,
     PERSONA_ELIMINADA_EXITO,
-    AGREGAR_PERSONA_ERROR,
-    DESCARGA_PERSONAL_ERROR,
-    PERSONA_ELIMINADA_ERROR,
-    PERSONA_EDITADA_ERROR
-    
+    PERSONA_ELIMINADA_ERROR
 } from '../types';
-
- 
 
 const initialState = {
     personal: [],
@@ -32,25 +29,25 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: action.payload
             }
-            case AGREGAR_PERSONA_EXITO:
+        case AGREGAR_PERSONA_EXITO:
             return {
                 ...state,
                 loading: false,
                 personal: [...state.personal, action.payload]
             }
-            case DESCARGA_PERSONAL_EXITO:
+        case DESCARGA_PERSONAL_EXITO:
             return {
                 ...state,
                 loading: false,
                 error: null,
                 personal: action.payload
             }
-            case  OBTENER_PERSONA_EDITAR:
+        case  OBTENER_PERSONA_EDITAR:
             return {
                 ...state,
                 personaeditar: action.payload
             }
-            case PERSONA_EDITADA_EXITO:
+        case PERSONA_EDITADA_EXITO:
             return {
                 ...state,
                 personaeditar: null,
@@ -58,7 +55,7 @@ export default function(state = initialState, action) {
                     persona.id === action.payload.id ? persona = action.payload : persona
                 )
             }
-            case OBTENER_PERSONA_ELIMINAR:
+        case OBTENER_PERSONA_ELIMINAR:
             return {
                 ...state,
                 personaeliminar: action.payload
@@ -69,7 +66,7 @@ export default function(state = initialState, action) {
                 personal: state.personal.filter( persona => persona.id !== state.personaeliminar ),
                 personaeliminar: null
             }
-            case AGREGAR_PERSONA_ERROR:
+        case AGREGAR_PERSONA_ERROR:
         case DESCARGA_PERSONAL_ERROR:
         case PERSONA_ELIMINADA_ERROR:
         case PERSONA_EDITADA_ERROR:
@@ -78,7 +75,7 @@ export default function(state = initialState, action) {
                 loading: false,
                 error: action.payload
             }
-            default:
-            return state;
+        default:
+        return state;
     }
 }

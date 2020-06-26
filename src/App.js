@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Personal from './components/Personal';
 import NuevaPersona from './components/NuevaPersona';
 import EditarPersona from './components/EditarPersona';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -12,9 +13,8 @@ function App() {
   return (
     <>
       <Router>
-      <Provider store={store}>
+        <Provider store={store}>
           <Header />
-
           <div className="container mt-5">
               <Switch>
                   <Route exact path="/" component={Personal} />
@@ -22,8 +22,8 @@ function App() {
                   <Route exact path="/personal/editar/:id" component={EditarPersona} /> 
               </Switch>
           </div>
-      </Provider>
-    </Router>
+        </Provider>
+      </Router>
     </>
   );
 }

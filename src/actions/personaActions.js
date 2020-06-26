@@ -15,6 +15,7 @@ import {
     
     
 } from '../types';
+
 import clienteAxios from '../config/axios';
 import Swal from 'sweetalert2';
 
@@ -24,13 +25,10 @@ export function crearNuevaPersonaAction(persona) {
         dispatch( agregarPersona() );
 
         try {
-            // insertar en la API
             await clienteAxios.post('/personal', persona);
 
-            // Si todo sale bien, actualizar el state
            dispatch( agregarPersonaExito(persona) );
 
-            // Alerta
             Swal.fire(
                 'Correcto', 
                 'La persona se agregó correctamente',
@@ -38,11 +36,8 @@ export function crearNuevaPersonaAction(persona) {
             );
 
         } catch (error) {
-            console.log(error);
-            // si hay un error cambiar el state
             dispatch( agregarPersonaError(true) );
 
-            // alerta de error
             Swal.fire({
                 icon: 'error',
                 title: 'Hubo un error',
@@ -125,9 +120,9 @@ const descargarPersonal = () => ({
     payload: true
 });
 
-const descargaPersonalExitosa = productos => ({
+const descargaPersonalExitosa = personal => ({
     type: DESCARGA_PERSONAL_EXITO,
-    payload: productos
+    payload: personal
 })
 
 const descargaPersonalError = () => ({
@@ -143,7 +138,6 @@ export function borrarPersonaAction(id) {
             await clienteAxios.delete(`/personal/${id}`);
             dispatch( eliminarPersonaExito() );
 
-            // Si se elimina, mostrar alerta
             Swal.fire(
                 'Eliminada',
                 'La persona se eliminó correctamente.',
@@ -160,9 +154,11 @@ const obtenerPersonaEliminar = id => ({
     type: OBTENER_PERSONA_ELIMINAR,
     payload: id
 });
+
 const eliminarPersonaExito = () => ({
     type: PERSONA_ELIMINADA_EXITO
 })
+
 const eliminarPersonaError = () => ({
     type: PERSONA_ELIMINADA_ERROR,
     payload: true
