@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Provider store={store}>
           <Header />
-          <div className="container mt-5">
+          <div className=" m-5">
               <Switch>
                   <Route exact path="/" component={Personal} />
                   <Route exact path="/personal/nuevo" component={NuevaPersona} />

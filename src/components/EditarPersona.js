@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editarPersonaAction } from '../actions/personaActions';
 import { useHistory } from 'react-router-dom';
 
-const EditarPrsona = () => {
+const EditarPersona = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -16,7 +16,9 @@ const EditarPrsona = () => {
     const personaeditar = useSelector(state => state.personal.personaeditar);
 
     useEffect( () => {
-        guardarPersona(personaeditar);
+        if(personaeditar){
+            guardarPersona(personaeditar);
+        }
     }, [personaeditar]);
 
     const onChangeFormulario = e => {
@@ -25,60 +27,71 @@ const EditarPrsona = () => {
             [e.target.name] : e.target.value
         })
     }
-
-    const {nombre, edad} = persona;
-
+    
     const submitEditarPersona = e => {
         e.preventDefault();
         dispatch( editarPersonaAction(persona) );
         history.push('/');
     }
 
+    const handleClick = () => {
+        history.push('/');
+    }
+
     return ( 
         <> 
-            <h1 className="text-center text-gray-700 text-2xl font-bold text-black ">
-                Edicion
+        <div className=" md:w-2/5 m-auto justify-center">
+            <h1 className="text-center my-3 text-gray-700 text-2xl font-bold text-black ">
+                Editar Persona
             </h1>
             <form onSubmit={submitEditarPersona} >
-                <div className="mb-4 flex ">
-                    <label className="w-1/3 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">
+                <div className="mb-4 flex justify-center ">
+                    <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">
                         Nombre:
                     </label>
                     <input
-                        className="appearance-none rounded border-2  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-lg "
+                        className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg "
                         id="nombre"
                         name="nombre"
                         type="text"
                         placeholder="Nombre"
                         onChange={onChangeFormulario}
-                        value={nombre}
+                        value={persona.nombre}
                     />
                 </div>
                 <div className="mb-4 flex ">
-                    <label className="w-1/3 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="alumno">
+                    <label className="w-1/5 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="alumno">
                         Edad:
                     </label>
                     <input
-                        className="appearance-none rounded border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-lg"
+                        className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg "
                         id="edad"
                         name="edad"
                         type="number"
                         placeholder="Edad"
                         onChange={onChangeFormulario}
-                        value={edad}
+                        value={persona.edad}
                     />
                 </div>
                 <div className="flex justify-center">
+                <button
+                        onClick={handleClick}
+                        type="button"
+                        className="my-5 mx-1 bg-gray-800 w-1/3 rounded-md p-2 text-center text-white uppercase hover:bg-gray-900"
+                    >
+                        Cancelar
+                    </button>
                     <button
                         type="submit"
-                        className="my-5 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                        className="my-5 mx-1 bg-blue-700 w-1/3 rounded-md p-2 text-center text-white uppercase hover:bg-blue-900"
                     >
                         Guardar
                     </button>
                 </div>
             </form>
+        </div>    
         </>
      );
 }
  
-export default EditarPrsona;
+export default EditarPersona;

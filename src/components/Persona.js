@@ -5,13 +5,12 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { borrarPersonaAction, obtenerPersonaEditar } from '../actions/personaActions';
 
-
 const Persona = ({persona}) => {
 
     const { nombre, edad, id } = persona;
     
     const dispatch = useDispatch();
-    const history = useHistory(); // habilitar history para redirección
+    const history = useHistory(); 
    
     const redireccionarEdicion = persona => {
         dispatch( obtenerPersonaEditar(persona) );
@@ -20,19 +19,17 @@ const Persona = ({persona}) => {
 
     const confirmarEliminarProducto = id => {
 
-        // preguntar al usuario
         Swal.fire({
-            title: '¿Estas seguro?',
-            text: "Un producto que se elimina no se puede recuperar",
+            title: '¿Estás seguro?',
+            text: "Si la persona se elimina, no se podrá recuperar",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar!!',
+            confirmButtonText: 'Sí, eliminar!!',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {
-                // pasarlo al action
                 dispatch( borrarPersonaAction(id) );
             }
         });
@@ -40,26 +37,24 @@ const Persona = ({persona}) => {
 
     return ( 
         <> 
-        <tr>
-            <td className="border text-center">{nombre}</td>
-            <td className="border text-center">  {edad} </td>
-            <td className="border text-center">
-                <button 
-                    type="submit"
-                    onClick={ () => redireccionarEdicion(persona) }
-                    className="m-2 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
-                    >
-                    Editar
-                </button>
-
-                <button 
-                    type="submit"
-                    className="m-2 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
-                    onClick={() => confirmarEliminarProducto(id)}
-                >Eliminar </button>
-                
-            </td>
-        </tr>
+            <tr>
+                <td className="border text-center"> {nombre} </td>
+                <td className="border text-center"> {edad} </td>
+                <td className="border text-center">
+                    <button 
+                        type="submit"
+                        onClick={ () => redireccionarEdicion(persona) }
+                        className="m-2 bg-blue-700 rounded-md p-2 text-white uppercase hover:bg-blue-900"
+                        >
+                        Editar
+                    </button>
+                    <button 
+                        type="submit"
+                        className="m-2 bg-red-700 rounded-md p-2 text-white uppercase hover:bg-red-800"
+                        onClick={() => confirmarEliminarProducto(id)}
+                    >Eliminar </button>
+                </td>
+            </tr>
         </>
      );
 }

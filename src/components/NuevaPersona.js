@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { MetroSpinner } from 'react-spinners-kit';
 
 import { crearNuevaPersonaAction } from '../actions/personaActions';
 import { mostrarAlerta, ocultarAlertaAction } from '../actions/alertaActions';
@@ -11,6 +12,10 @@ const NuevaPersona = ({history}) => {
 
     const dispatch = useDispatch();
 
+    const cargando = useSelector( state => state.personal.loading );
+    const error = useSelector(state => state.personal.error);
+    const alerta = useSelector(state => state.alerta.alerta);
+
     const agregarPersona = persona => dispatch( crearNuevaPersonaAction(persona) );
 
     const submitNuevaPersona = e => {
@@ -20,7 +25,7 @@ const NuevaPersona = ({history}) => {
 
             const alerta = {
                 msg: 'Ambos campos son obligatorios',
-                classes: 'alert alert-danger text-center text-uppercase p3'
+                style: 'bg-red-400 w-4/5 font-bold m-auto my-1 text-center '
             }
             dispatch( mostrarAlerta(alerta) );
             return;
@@ -36,18 +41,26 @@ const NuevaPersona = ({history}) => {
         history.push('/');
     }
 
+    const handleClick = () => {
+        history.push('/');
+    }
+
     return ( 
         <> 
-            <h1 className="text-center text-gray-700 text-2xl font-bold text-black ">
-                Datos
+        <div className="border md:w-2/5 m-auto justify-center">
+            <h1 className="text-center mb-3 bg-gray-400 text-gray-700 text-2xl font-bold text-black ">
+                Datos Persona
             </h1>
+
+            {alerta && <p className={alerta.style}> {alerta.msg} </p> }
+
             <form onSubmit={submitNuevaPersona} >
-                <div className="mb-4 flex ">
-                    <label className="w-1/3 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">
+                <div className="mb-4 flex justify-center ">
+                    <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">
                         Nombre:
                     </label>
                     <input
-                        className="appearance-none rounded border-2  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-lg "
+                        className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg "
                         id="nombre"
                         name="nombre"
                         type="text"
@@ -57,11 +70,11 @@ const NuevaPersona = ({history}) => {
                     />
                 </div>
                 <div className="mb-4 flex ">
-                    <label className="w-1/3 text-center mr-2 text-gray-700 text-sm font-bold my-auto" htmlFor="alumno">
+                    <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="alumno">
                         Edad:
                     </label>
                     <input
-                        className="appearance-none rounded border-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-lg"
+                        className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg"
                         id="edad"
                         name="edad"
                         type="number"
@@ -70,15 +83,27 @@ const NuevaPersona = ({history}) => {
                         value={edad}
                     />
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-around">
+                    <button
+                        onClick={handleClick}
+                        type="button"
+                        className="mb-4 mx-1 bg-gray-800 w-1/3 rounded-md p-2 text-center text-white uppercase hover:bg-gray-900"
+                    >
+                        Cancelar
+                    </button>
                     <button
                         type="submit"
-                        className="my-5 bg-gray-800 px-10 rounded-md p-2 text-white uppercase hover:bg-gray-900"
+                        className="mb-4 mx-1 bg-blue-700 w-1/3 rounded-md p-2 text-center text-white uppercase hover:bg-blue-900"
                     >
                         Guardar
                     </button>
+
+                    { cargando && <div className="flex justify-center my-1"> <MetroSpinner  color="#000" /> </div>  }
+                        
+                    { error && <p className="bg-red-400 font-bold text-center w-4/5 m-auto p-3 my-2">Hubo un error</p> }
                 </div>
             </form>
+        </div> 
         </>
      );
 }
