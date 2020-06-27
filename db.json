@@ -2,18 +2,73 @@
   "personal": [
     {
       "nombre": "Jojan Guzman",
-      "edad": 21,
-      "id": 2
+      "edad": "21",
+      "id": "w-JQl-tii"
     },
     {
       "nombre": "Erika Cardona",
-      "edad": "19",
-      "id": 3
+      "edad": "20",
+      "id": "7zDNs_JOb"
     },
     {
       "nombre": "Monica Jaramillo",
       "edad": 46,
-      "id": 4
+      "id": "5eKbRkopq"
+    },
+    {
+      "nombre": "Mark Cuban",
+      "edad": 61,
+      "id": "JiHdbeCyx"
+    },
+    {
+      "nombre": "Lori Greiner",
+      "edad": 50,
+      "id": "tvcUyBFVp"
+    },
+    {
+      "nombre": "Kevin O'Leary",
+      "edad": 65,
+      "id": "p458X5Fhs"
+    },
+    {
+      "nombre": "Barbara Corcoran",
+      "edad": 71,
+      "id": "16k1ytDSc"
+    },
+    {
+      "nombre": "Daymond Jhon",
+      "edad": 51,
+      "id": "d387fb9sA"
+    },
+    {
+      "nombre": "Elon Musk",
+      "edad": 48,
+      "id": "4HjPy7qDB"
+    },
+    {
+      "nombre": "Mark Zuckerberg",
+      "edad": 36,
+      "id": "FZZOLqxhP"
+    },
+    {
+      "nombre": "Karen Osorio",
+      "edad": 21,
+      "id": "EwhjYLxCe"
+    },
+    {
+      "nombre": "Alejandra Sierra",
+      "edad": 18,
+      "id": "afz1qAiBM"
+    },
+    {
+      "nombre": "Bill Gates",
+      "edad": 64,
+      "id": "_caCRGWwU"
+    },
+    {
+      "nombre": "Jeff Bezos",
+      "edad": 56,
+      "id": "O80OLP3Jp"
     }
   ]
 }

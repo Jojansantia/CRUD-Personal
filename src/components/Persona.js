@@ -17,7 +17,7 @@ const Persona = ({persona}) => {
         history.push(`/personal/editar/${persona.id}`)
     }
 
-    const confirmarEliminarProducto = id => {
+    const confirmarEliminarPersona = id => {
 
         Swal.fire({
             title: '¿Estás seguro?',
@@ -50,8 +50,8 @@ const Persona = ({persona}) => {
                     </button>
                     <button 
                         type="submit"
-                        className="m-2 bg-red-700 rounded-md p-2 text-white uppercase hover:bg-red-800"
-                        onClick={() => confirmarEliminarProducto(id)}
+                        className="m-2 bg-red-700 rounded-md p-2 text-white uppercase hover:bg-red-900"
+                        onClick={() => confirmarEliminarPersona(id)}
                     >Eliminar </button>
                 </td>
             </tr>

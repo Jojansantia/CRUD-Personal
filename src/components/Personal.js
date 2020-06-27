@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Persona from './Persona';
+import Paginacion from '../config/Paginacion';
 
 import { MetroSpinner } from 'react-spinners-kit';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,13 +20,25 @@ const Personal = () => {
     const error = useSelector(state => state.personal.error);
     const cargando = useSelector(state => state.personal.loading);
 
+    // Paginacion
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(5);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = personal.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     return ( 
         <>
             <h1 className=" mb-2 text-center text-gray-700 text-2xl font-bold text-black ">
                 Listado
             </h1>
             
-            { error ? <p className="bg-red-400 font-bold text-center  w-4/5 m-auto p-3 my-2">Hubo un error</p> : null }
+            { error && <p className="bg-red-400 font-bold text-center  w-4/5 m-auto p-3 my-2">Hubo un error</p> }
 
             { cargando ? 
                 <div className="flex justify-center my-1"> <MetroSpinner  color="#000" /> </div> 
@@ -40,7 +53,7 @@ const Personal = () => {
                     </thead>
                     <tbody>
                         { personal.length !== 0 &&  (
-                            personal.map(persona => (
+                            currentPosts.map(persona => (
                                 <Persona
                                         key={persona.id}
                                         persona={persona}
@@ -50,6 +63,12 @@ const Personal = () => {
                     </tbody>
                 </table>
             }
+            <Paginacion
+                postsPerPage={postsPerPage}
+                totalPosts={personal.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
         </>
     );
 }
