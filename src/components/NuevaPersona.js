@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Campo from './Campo';
 import { useDispatch, useSelector } from 'react-redux';
 import { MetroSpinner } from 'react-spinners-kit';
 
@@ -9,8 +10,24 @@ const shortid = require('shortid');
  
 const NuevaPersona = ({history}) => {
 
-    const [nombre, guardarNombre] = useState('');
-    const [edad, guardarEdad] = useState('');
+    const [ persona, guardarPersona] = useState({
+        nombre: '',
+        edad: '' ,
+        cargo: '',
+        telefono: '',
+        id:shortid.generate()
+    })
+
+    const {nombre, edad, cargo, telefono, id} = persona
+
+    const onChangeFormulario = e => {
+        console.log(e.target.name);
+        
+        guardarPersona({
+            ...persona,
+            [e.target.name] : e.target.value
+        })
+    }
 
     const dispatch = useDispatch();
 
@@ -23,9 +40,9 @@ const NuevaPersona = ({history}) => {
     const submitNuevaPersona = e => {
         e.preventDefault();
 
-        if(nombre.trim() === '' || edad <= 0) {
+        if(nombre.trim() === '' || edad <= 0 || cargo.trim() === '' || telefono <= 0) {
             const alerta = {
-                msg: 'Ambos campos son obligatorios',
+                msg: 'Todos los campos son obligatorios',
                 style: 'bg-red-400 w-4/5 font-bold m-auto my-1 text-center '
             }
             dispatch( mostrarAlerta(alerta) );
@@ -34,10 +51,11 @@ const NuevaPersona = ({history}) => {
 
         dispatch( ocultarAlertaAction() );
 
-        const id = shortid.generate()
         agregarPersona({
             nombre,
             edad,
+            cargo,
+            telefono,
             id
         });
 
@@ -54,34 +72,12 @@ const NuevaPersona = ({history}) => {
                 {alerta && <p className={alerta.style}> {alerta.msg} </p> }
 
                 <form onSubmit={submitNuevaPersona} >
-                    <div className="mb-4 flex justify-center ">
-                        <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="codigo">
-                            Nombre:
-                        </label>
-                        <input
-                            className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg "
-                            id="nombre"
-                            name="nombre"
-                            type="text"
-                            placeholder="Nombre"
-                            onChange={e => guardarNombre(e.target.value)}
-                            value={nombre}
-                        />
-                    </div>
-                    <div className="mb-4 flex ">
-                        <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="alumno">
-                            Edad:
-                        </label>
-                        <input
-                            className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg"
-                            id="edad"
-                            name="edad"
-                            type="number"
-                            placeholder="Edad"
-                            onChange={e => guardarEdad(Number(e.target.value))}
-                            value={edad}
-                        />
-                    </div>
+                    
+                    <Campo persona={persona} nombrecampo={'Nombre'} tipo={'text'} onChangeFormulario={onChangeFormulario} />
+                    <Campo persona={persona} nombrecampo={'Edad'} tipo={'number'} onChangeFormulario={onChangeFormulario} />
+                    <Campo persona={persona} nombrecampo={'Cargo'} tipo={'text'} onChangeFormulario={onChangeFormulario} />
+                    <Campo persona={persona} nombrecampo={'Telefono'} tipo={'number'} onChangeFormulario={onChangeFormulario} />
+
                     <div className="flex justify-around">
                         <button
                             onClick={e => history.push('/')}

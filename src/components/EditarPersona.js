@@ -10,7 +10,9 @@ const EditarPersona = () => {
 
     const [ persona, guardarPersona] = useState({
         nombre: '',
-        edad: '' 
+        edad: '' ,
+        cargo: '',
+        telefono: ''
     })
 
     const personaeditar = useSelector(state => state.personal.personaeditar);
@@ -67,6 +69,34 @@ const EditarPersona = () => {
                             placeholder="Edad"
                             onChange={onChangeFormulario}
                             value={persona.edad}
+                        />
+                    </div>
+                    <div className="mb-4 flex ">
+                        <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="cargo">
+                            Cargo:
+                        </label>
+                        <input
+                            className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg"
+                            id="cargo"
+                            name="cargo"
+                            type="text"
+                            placeholder="cargo"
+                            onChange={onChangeFormulario}
+                            value={persona.cargo}
+                        />
+                    </div>
+                    <div className="mb-4 flex ">
+                        <label className="w-1/5 mx-1 text-center text-gray-700 text-sm font-bold my-auto" htmlFor="telefono">
+                            Telefono:
+                        </label>
+                        <input
+                            className="w-full rounded border-2 p-2 text-gray-700 leading-tight mr-1 focus:outline-none focus:shadow-lg"
+                            id="telefono"
+                            name="telefono"
+                            type="number"
+                            placeholder="Telefono"
+                            onChange={onChangeFormulario}
+                            value={persona.telefono}
                         />
                     </div>
                     <div className="flex justify-center">

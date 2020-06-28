@@ -7,7 +7,7 @@ import { borrarPersonaAction, obtenerPersonaEditar } from '../actions/personaAct
 
 const Persona = ({persona}) => {
 
-    const { nombre, edad, id } = persona;
+    const { nombre, edad, cargo, telefono, id } = persona;
     
     const dispatch = useDispatch();
     const history = useHistory(); 
@@ -40,6 +40,8 @@ const Persona = ({persona}) => {
             <tr>
                 <td className="border text-center"> {nombre} </td>
                 <td className="border text-center"> {edad} </td>
+                <td className="border text-center"> {cargo} </td>
+                <td className="border text-center"> {telefono} </td>
                 <td className="border text-center">
                     <button 
                         type="submit"

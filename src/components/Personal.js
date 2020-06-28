@@ -48,6 +48,8 @@ const Personal = () => {
                             <tr>
                                 <th className="border bg-gray-400 text-gray-700 px-4 py-2">Nombre</th>
                                 <th className="border bg-gray-400 text-gray-700 px-4 py-2">Edad</th>
+                                <th className="border bg-gray-400 text-gray-700 px-4 py-2">Cargo</th>
+                                <th className="border bg-gray-400 text-gray-700 px-4 py-2">Telefono</th>
                                 <th className="border bg-gray-400 text-gray-700 px-4 py-2">Acciones</th>
                             </tr>
                     </thead>

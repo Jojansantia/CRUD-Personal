@@ -3,72 +3,100 @@
     {
       "nombre": "Jojan Guzman",
       "edad": "21",
-      "id": "w-JQl-tii"
-    },
-    {
-      "nombre": "Erika Cardona",
-      "edad": "20",
-      "id": "7zDNs_JOb"
-    },
-    {
-      "nombre": "Monica Jaramillo",
-      "edad": 46,
-      "id": "5eKbRkopq"
-    },
-    {
-      "nombre": "Mark Cuban",
-      "edad": 61,
-      "id": "JiHdbeCyx"
-    },
-    {
-      "nombre": "Lori Greiner",
-      "edad": 50,
-      "id": "tvcUyBFVp"
-    },
-    {
-      "nombre": "Kevin O'Leary",
-      "edad": 65,
-      "id": "p458X5Fhs"
-    },
-    {
-      "nombre": "Barbara Corcoran",
-      "edad": 71,
-      "id": "16k1ytDSc"
-    },
-    {
-      "nombre": "Daymond Jhon",
-      "edad": 51,
-      "id": "d387fb9sA"
-    },
-    {
-      "nombre": "Elon Musk",
-      "edad": 48,
-      "id": "4HjPy7qDB"
-    },
-    {
-      "nombre": "Mark Zuckerberg",
-      "edad": 36,
-      "id": "FZZOLqxhP"
+      "id": "w-JQl-tii",
+      "cargo": "CEO",
+      "telefono": "3205682468"
     },
     {
       "nombre": "Karen Osorio",
       "edad": 21,
-      "id": "EwhjYLxCe"
+      "id": "EwhjYLxCe",
+      "cargo": "CEO",
+      "telefono": "3222690950"
+    },
+    {
+      "nombre": "Erika Cardona",
+      "edad": "20",
+      "id": "7zDNs_JOb",
+      "cargo": "Diseñadora de sitios web",
+      "telefono": "3128593890"
+    },
+    {
+      "nombre": "Monica Jaramillo",
+      "edad": 46,
+      "id": "5eKbRkopq",
+      "cargo": "Responsable de calidad",
+      "telefono": "3019573982"
+    },
+    {
+      "nombre": "Mark Cuban",
+      "edad": 61,
+      "id": "JiHdbeCyx",
+      "cargo": "Inversionista",
+      "telefono": "3104967123"
+    },
+    {
+      "nombre": "Lori Greiner",
+      "edad": 50,
+      "id": "tvcUyBFVp",
+      "cargo": "Inversionista",
+      "telefono": "3205689453"
+    },
+    {
+      "nombre": "Kevin O'Leary",
+      "edad": 65,
+      "id": "p458X5Fhs",
+      "cargo": "Inversionista",
+      "telefono": "3210578964"
+    },
+    {
+      "nombre": "Barbara Corcoran",
+      "edad": 71,
+      "id": "16k1ytDSc",
+      "cargo": "Inversionista",
+      "telefono": "3214785069"
+    },
+    {
+      "nombre": "Daymond Jhon",
+      "edad": 51,
+      "id": "d387fb9sA",
+      "cargo": "Inversionista",
+      "telefono": "3129084756"
+    },
+    {
+      "nombre": "Elon Musk",
+      "edad": 48,
+      "id": "4HjPy7qDB",
+      "cargo": "Desarrollador de software",
+      "telefono": "30129574876"
+    },
+    {
+      "nombre": "Mark Zuckerberg",
+      "edad": 36,
+      "id": "FZZOLqxhP",
+      "cargo": "Desarrollador y analista de aplicaciones web",
+      "telefono": "3021948576"
     },
     {
       "nombre": "Alejandra Sierra",
       "edad": 18,
-      "id": "afz1qAiBM"
+      "id": "afz1qAiBM",
+      "cargo": "Usabilidad y experiencia de usuarios",
+      "telefono": "3214567890"
     },
     {
       "nombre": "Bill Gates",
       "edad": 64,
-      "id": "_caCRGWwU"
+      "id": "_caCRGWwU",
+      "cargo": "Consultor relacionado con tecnologías (TI)",
+      "telefono": "3124857690"
     },
     {
       "nombre": "Jeff Bezos",
       "edad": 56,
-      "id": "O80OLP3Jp"
+      "id": "O80OLP3Jp",
+      "cargo": "Programación web ágil",
+      "telefono": "3102894765"
     }
   ]
 }
